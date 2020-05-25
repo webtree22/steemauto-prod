@@ -1,14 +1,16 @@
 const config = new function () {
   this.appName = 'steemauto'
   this.sc2 = {
-    baseURL: 'https://steemconnect.com',
-    app: 'steem.app',
+    baseURL: 'https://steemlogin.com',
+    app: 'steemauto.app',
     // url: 'https://dev.onsteem.com',
     callbackURL: 'http://localhost:4200',
+    // callbackURL: 'http://auto.steemdb.com',
     scope: ['login']
   }
   this.api = {}
-  this.api.url = 'http://localhost:3001'
+  // this.api.url = 'http://localhost:3001'
+  this.api.url = 'https://back.steemdb.online'
   this.api.login_api = this.api.url + '/api/v1/login'
   // dashboard api
   this.api.price = this.api.url + '/api/v1.1/dashboard/price'

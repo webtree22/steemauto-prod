@@ -42,8 +42,9 @@ export class AuthService {
   public httpOptions() {
     return {
       withCredentials: true,
-      headers: { access_key: localStorage.getItem('access_key') || '' }
-    }
+      headers: {
+        access_key: localStorage.getItem('access_key') || '' }
+     }
   }
 
   // Redirect to steemconnect
