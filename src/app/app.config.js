@@ -4,8 +4,8 @@ const config = new function () {
     baseURL: 'https://steemlogin.com',
     app: 'steemauto.app',
     // url: 'https://dev.onsteem.com',
-    callbackURL: 'http://localhost:4200',
-    // callbackURL: 'http://auto.steemdb.com',
+    // callbackURL: 'http://localhost:4200',
+    callbackURL: 'http://auto.steemdb.com',
     scope: ['login']
   }
   this.api = {}
