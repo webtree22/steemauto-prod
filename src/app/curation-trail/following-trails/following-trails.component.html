@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="col col-sm-12">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <i class="panel-icon glyphicon glyphicon-list"></i>
+
+        <!-- Panel head title -->
+        <h3 class="panel-title">You are following</h3>
+      </div>
+      <div class="panel-body" *ngIf="!_t.followingTrails.length">None.</div>
+      <table class="table table-striped" *ngIf="_t.followingTrails.length">
+        <thead>
+          <!-- Table headings -->
+          <tr>
+            <th>#</th>
+            <th>
+              Name
+
+              <!-- Sort button -->
+              <i
+                class="glyphicon glyphicon-sort-by-alphabet pointer"
+                (click)="sort(_t.followingTrails, 'trailer')"
+              ></i>
+            </th>
+            <th>
+              Followers
+
+              <!-- Sort button -->
+              <i
+                class="glyphicon glyphicon-sort-by-order pointer"
+                (click)="sort(_t.followingTrails, 'followers')"
+              ></i>
+            </th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Table body -->
+          <tr
+            *ngFor="
+              let trail of _t.getPages(
+                _t.followingTrails,
+                _t.followingPage.page,
+                _t.tablePageSize
+              );
+              let i = index
+            "
+            [attr.data-index]="i"
+          >
+            <td>
+              <!-- Display current index of object inside main array +1 -->
+              {{ i + 1 + (_t.followingPage.page - 1) * _t.tablePageSize }}
+            </td>
+            <td>
+              <!-- Curation trail name -->
+              {{ trail.trailer }}
+
+              <!-- Status of trail -->
+              <!-- Enabled icon -->
+              <i
+                class="glyphicon glyphicon-ok-circle enabled-icon"
+                *ngIf="trail.enable"
+                data-toggle="tooltip"
+                title="Enabled"
+              ></i>
+
+              <!-- Disabled icon -->
+              <i
+                class="glyphicon glyphicon-ban-circle disabled-icon"
+                *ngIf="!trail.enable"
+                data-toggle="tooltip"
+                title="Disabled"
+              ></i>
+            </td>
+            <!-- Total followers -->
+            <td>{{ trail.followers }}</td>
+            <td>
+              <!-- View button -->
+              <app-trail-view-button
+                [trail]="trail.trailer"
+              ></app-trail-view-button>
+
+              <!-- Disable button -->
+              <app-trail-disable-button
+                [trail]="trail.trailer"
+                [enable]="trail.enable"
+              ></app-trail-disable-button>
+
+              <!-- Enable button -->
+              <app-trail-enable-button
+                [trail]="trail.trailer"
+                [enable]="trail.enable"
+              ></app-trail-enable-button>
+
+              <!-- Unfollow button -->
+              <app-trail-unfollow-button
+                [trail]="trail.trailer"
+              ></app-trail-unfollow-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="panel-footer pages-btns">
+        <button
+          class="btn btn-primary btn-xs"
+          (click)="_t.changePage(-1, _t.followingTrails, _t.followingPage)"
+          [attr.disabled]="_t.followingPage.page <= 1 ? 'disabled' : null"
+        >
+          <i class="glyphicon glyphicon-arrow-left"></i> Back
+        </button>
+        <button
+          class="btn btn-primary btn-xs"
+          (click)="_t.changePage(1, _t.followingTrails, _t.followingPage)"
+          [attr.disabled]="
+            _t.disableNxtBtn(_t.followingTrails, _t.followingPage)
+              ? 'disabled'
+              : null
+          "
+        >
+          Next <i class="glyphicon glyphicon-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

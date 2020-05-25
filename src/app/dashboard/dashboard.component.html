@@ -1,0 +1,27 @@
+<div class="container">
+  <!-- Price panel -->
+  <app-price></app-price>
+
+  <!-- Stats panel -->
+  <app-stats></app-stats>
+
+  <!-- Announcement pannel -->
+  <app-announcement></app-announcement>
+</div>
+
+<div class="container">
+  <!-- Balance panel -->
+  <app-balance></app-balance>
+
+  <!-- Limitations panel -->
+  <app-limits
+    [rcMana]="exportUserDetails().rc_mana"
+    [votingMana]="exportUserDetails().voting_mana"
+  ></app-limits>
+
+  <!-- Voting details panel -->
+  <app-voting-detail></app-voting-detail>
+</div>
+
+<!-- vote history panels -->
+<app-vote-history></app-vote-history>
