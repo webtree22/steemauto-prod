@@ -38,6 +38,8 @@ export class AuthService {
         this.scState = event.url
       }
     })
+    console.log('api', this.api)
+    console.log('isAuth', this.isAuth)
   }
   public httpOptions() {
     return {
